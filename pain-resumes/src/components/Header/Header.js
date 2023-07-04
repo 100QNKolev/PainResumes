@@ -1,11 +1,11 @@
-//TODO: Implement AuthContext
 import { Link } from 'react-router-dom';
+
+import { useAuthContext } from '../../contexts/authContext';
 
 import styles from './Header.module.css';
 
 export const Header = () => {
-    const isAuthenticated = false;
-    const userId = 1;
+    const { isAuthenticated, userId } = useAuthContext();
 
     return (
         <nav>
