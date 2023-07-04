@@ -41,5 +41,5 @@ export const requestFactory = (token) => {
         , post
         , put
         , del
-    }
+    };
 };

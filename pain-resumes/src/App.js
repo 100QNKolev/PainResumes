@@ -1,18 +1,22 @@
 //TODO: Implement AuthContext
 import { Routes, Route } from 'react-router-dom';
 
+import { AuthProvider } from './contexts/authContext';
+
 import { Header } from './components/Header/Header';
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
+    <AuthProvider>
+      <div className='App'>
+        <Header />
 
-      <main>
-        
-      </main>
+        <main>
 
-    </div>
+        </main>
+
+      </div>
+    </AuthProvider>
   );
 }
 
