@@ -1,7 +1,7 @@
 export const requester = async (method, token, url, data) => {
     const options = {};
 
-    if (options.method !== "GET") {
+    if (options.method !== 'GET') {
         options.method = method;
 
         if (data) {
@@ -26,8 +26,14 @@ export const requester = async (method, token, url, data) => {
         return {};
     }
 
-    const result = await response.json();
-    return result;
+    try {
+        const result = await response.json();
+        return result;
+    }
+    catch (err) {
+        return {};
+    }
+
 };
 
 export const requestFactory = (token) => {
