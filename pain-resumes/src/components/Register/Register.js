@@ -14,7 +14,7 @@ export const Register = () => {
     }, onRegisterSubmit);
 
     return (
-        <div>
+        <>
             <div className={styles['logo']}></div>
             <div className={styles['register-block']}>
                 <h1>Register</h1>
@@ -26,6 +26,6 @@ export const Register = () => {
                     <button>Submit</button>
                 </form>
             </div>
-        </div>
+        </>
     );
 };
