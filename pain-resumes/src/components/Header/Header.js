@@ -19,7 +19,7 @@ export const Header = () => {
                 )}
                 {isAuthenticated && (
                     <>
-                        <li id='user'> <Link to={`/account/${userId}`}>My account</Link> </li>
+                        <li id='user'> <Link to={`/account/${userId}`}>My Information</Link> </li>
                         <li id='user'> <Link to='/logout'>Logout </Link> </li>
                     </>
                 )}
