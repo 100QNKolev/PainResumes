@@ -14,7 +14,7 @@ export const authServiceFactory = (token) => {
     };
 
     const Logout = async () => {
-        await request.post(`${baseUrl}/logout`);
+        await request.get(`${baseUrl}/logout`);
     };
 
     return {
