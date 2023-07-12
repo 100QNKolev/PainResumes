@@ -57,6 +57,7 @@
 
 .register-block button:hover {
     background: #80808096;
+<<<<<<< Updated upstream
 }
 
 body {
@@ -196,3 +197,6 @@ text-align: center;
 .login-register p a:hover {
     text-decoration: underline;
 }
+=======
+}
+>>>>>>> Stashed changes

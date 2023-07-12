@@ -1,9 +1,22 @@
+<<<<<<< Updated upstream
+=======
+import { useEffect } from 'react';
+
+import { useMyInfoContext } from '../../../../contexts/myInfoContext';
+>>>>>>> Stashed changes
 import { useForm } from '../../../../hooks/useForm';
 
 import styles from './PersonalDetails.module.css';
 
+<<<<<<< Updated upstream
 export const PersonalDetails = ({ onSubmitHandler }) => {
     const { values, changeHandler, onSubmit } = useForm({
+=======
+export const PersonalDetails = () => {
+    const { onPersonalDetailsSubmit, onGetPersonalDetails } = useMyInfoContext();
+
+    const { values, changeHandler, onSubmit, changeValues } = useForm({
+>>>>>>> Stashed changes
         firstName: ''
         , lastName: ''
         , age: ''
@@ -11,7 +24,19 @@ export const PersonalDetails = ({ onSubmitHandler }) => {
         , adress: ''
         , email: ''
         , profile: ''
+<<<<<<< Updated upstream
     }, onSubmitHandler);
+=======
+    }, onPersonalDetailsSubmit);
+
+    useEffect(() => {
+        onGetPersonalDetails()
+            .then(result => {
+                if (result) changeValues(result);
+            })
+        // eslint-disable-next-line
+    }, [onPersonalDetailsSubmit]);
+>>>>>>> Stashed changes
 
     return (
         <form onSubmit={onSubmit} method='POST'>
@@ -47,6 +72,10 @@ export const PersonalDetails = ({ onSubmitHandler }) => {
                 </div>
                 <button className={styles['saveBtn']}>Save</button>
             </div>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         </form>
     );
 };

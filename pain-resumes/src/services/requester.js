@@ -33,7 +33,11 @@ export const requester = async (method, token, url, data) => {
     catch (err) {
         return {};
     }
+<<<<<<< Updated upstream
 
+=======
+    
+>>>>>>> Stashed changes
 };
 
 export const requestFactory = (token) => {

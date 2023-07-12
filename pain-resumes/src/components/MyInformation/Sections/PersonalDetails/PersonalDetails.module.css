@@ -37,7 +37,11 @@
 }
 
 .saveBtn {
+<<<<<<< Updated upstream
     width: 100%;
+=======
+    width: 50%;
+>>>>>>> Stashed changes
     height: 40px;
     background: #5e5151cb;
     box-sizing: border-box;
