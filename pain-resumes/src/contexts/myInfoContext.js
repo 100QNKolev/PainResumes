@@ -12,9 +12,9 @@ export const MyInfoProvider = ({ children }) => {
     const { userId, token } = useAuthContext();
 
     const [personalDetails, setPersonalDetails] = useState({});
-    const [professionalExperience, setProfessionalExperience] = useState({});
-    const [education, setEducation] = useState({});
-    const [skills, setSkills] = useState({});
+    const [professionalExperience, setProfessionalExperience] = useState([]);
+    const [education, setEducation] = useState([]);
+    const [skills, setSkills] = useState([]);
 
     const personalDetailsRequester = myInfoServiceFactory(token, 'personalDetails');
     const professionalExperienceRequester = myInfoServiceFactory(token, 'professionalExperience');
@@ -31,9 +31,9 @@ export const MyInfoProvider = ({ children }) => {
             ])
                 .then(([personalDetails, professionalExperience, education, skills]) => {
                     personalDetails ? setPersonalDetails(personalDetails) : setPersonalDetails({});
-                    professionalExperience ? setProfessionalExperience(professionalExperience) : setProfessionalExperience({});
-                    education ? setEducation(education) : setEducation({});
-                    skills ? setSkills(skills) : setSkills({});
+                    professionalExperience ? setProfessionalExperience(professionalExperience) : setProfessionalExperience([]);
+                    education ? setEducation(education) : setEducation([]);
+                    skills ? setSkills(skills) : setSkills([]);
                 })
         }
         // eslint-disable-next-line
@@ -41,18 +41,6 @@ export const MyInfoProvider = ({ children }) => {
 
     const onPersonalDetailsSubmit = async (data) => {
         personalDetails._id ? await onEditPersonalDetails(data) : await onCreatePersonalDetails(data);
-    };
-
-    const onProfessionalExperienceSubmit = async (data) => {
-        professionalExperience._id ? await onEditProfessionalExperience(data) : await onCreateProfessionalExperience(data);
-    };
-
-    const onEducationSubmit = async (data) => {
-        education._id ? await onEditEducation(data) : await onCreateEducation(data);
-    };
-
-    const onSkillsSubmit = async (data) => {
-        skills._id ? await onEditSkills(data) : await onCreateSkills(data);
     };
 
     const onCreatePersonalDetails = async (data) => {
@@ -68,15 +56,11 @@ export const MyInfoProvider = ({ children }) => {
     };
 
     const onCreateEducation = async (data) => {
-        const newEducation = await educationRequester.postInfo(data);
-
-        await setEducation(newEducation);
+       await educationRequester.postInfo(data);
     };
 
     const onCreateSkills = async (data) => {
-        const newSkills = await skillsRequester.postInfo(data);
-
-        await setSkills(newSkills);
+        await skillsRequester.postInfo(data);
     };
 
     const onEditPersonalDetails = async (data) => {
@@ -88,23 +72,23 @@ export const MyInfoProvider = ({ children }) => {
 
     const onEditProfessionalExperience = async (data) => {
         const infoId = data._id;
-        const newProfessionalExperience = await professionalExperienceRequester.putInfo(infoId, data);
+        await professionalExperienceRequester.putInfo(infoId, data);
 
-        await setProfessionalExperience(newProfessionalExperience);
+        await setProfessionalExperience(onGetProfessionalExperience);
     };
 
     const onEditEducation = async (data) => {
         const infoId = data._id;
-        const newEducation = await educationRequester.putInfo(infoId, data);
+        await educationRequester.putInfo(infoId, data);
 
-        await setEducation(newEducation);
+        await setEducation(onGetEducation);
     };
 
     const onEditSkills = async (data) => {
         const infoId = data._id;
-        const newSkills = await skillsRequester.putInfo(infoId, data);
+        await skillsRequester.putInfo(infoId, data);
 
-        await setSkills(newSkills);
+        await setSkills(onGetSkills);
     };
 
     const onGetPersonalDetails = async () => {
@@ -118,25 +102,31 @@ export const MyInfoProvider = ({ children }) => {
     const onGetProfessionalExperience = async () => {
         const result = await professionalExperienceRequester.getInfo(userId);
 
-        const details = result[0];
-
-        return details;
+        return result;
     };
 
     const onGetEducation = async () => {
         const result = await educationRequester.getInfo(userId);
 
-        const details = result[0];
-
-        return details;
+        return result;
     };
 
     const onGetSkills = async () => {
         const result = await skillsRequester.getInfo(userId);
 
-        const details = result[0];
+        return result;
+    };
 
-        return details;
+    const onDelProfessionalExperience = async (infoId) => {
+        await professionalExperienceRequester.deleteInfo(infoId);
+    };
+
+    const onDelEducation = async (infoId) => {
+        await educationRequester.deleteInfo(infoId);
+    };
+
+    const onDelSkills = async (infoId) => {
+        await skillsRequester.deleteInfo(infoId);
     };
 
     const context = {
@@ -146,9 +136,15 @@ export const MyInfoProvider = ({ children }) => {
         , onGetProfessionalExperience
         , onGetSkills
         , onPersonalDetailsSubmit
-        , onProfessionalExperienceSubmit
-        , onEducationSubmit
-        , onSkillsSubmit
+        , onEditEducation
+        , onCreateEducation
+        , onCreateSkills
+        , onEditSkills
+        , onEditProfessionalExperience
+        , onCreateProfessionalExperience
+        , onDelProfessionalExperience
+        , onDelSkills
+        , onDelEducation
     };
 
     return (

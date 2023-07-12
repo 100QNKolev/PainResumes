@@ -1,14 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useMyInfoContext } from '../../../../contexts/myInfoContext';
 import { useForm } from '../../../../hooks/useForm';
 
+import { InfoItem } from '../templates/InfoItem/InfoItem';
+
 import styles from './Education.module.css';
 
 export const Education = () => {
-    const { onEducationSubmit, onGetEducation } = useMyInfoContext();
-
-    const { values, changeHandler, onSubmit, changeValues } = useForm({
+    const { onCreateEducation, onGetEducation, onEditEducation, onDelEducation } = useMyInfoContext();
+    const [educations, setEducations] = useState([]);
+    const [isEditable, setIsEditable] = useState(false);
+    const { values, changeHandler, onSubmit, changeValues, resetValues } = useForm({
         schoolName: ''
         , schoolLocation: ''
         , startDate: ''
@@ -16,18 +19,55 @@ export const Education = () => {
         , degree: ''
         , fieldOfStudy: ''
         , description: ''
-    }, onEducationSubmit);
+    }, onCreateEducation);
 
     useEffect(() => {
         onGetEducation()
             .then(result => {
-                if (result) changeValues(result);
-            })
-        // eslint-disable-next-line
-    }, [onEducationSubmit]);
+                if (result) setEducations(result);
+            });
+    }, [onGetEducation]);
+
+    const setAllEducations = async () => {
+        onGetEducation()
+            .then(result => {
+                if (result) setEducations(result);
+            });
+    };
+
+    const onSubmitEducation = async (e) => {
+        e.preventDefault();
+
+        const buttonValue = e.target.querySelector('button').value;
+
+        if (buttonValue === 'Add') {
+            await onSubmit(e);
+        }
+        else {
+            await onEditEducation(values);
+
+            setIsEditable(false);
+            resetValues();
+        }
+
+        await setAllEducations();
+    };
+
+    const onDeleteEducation = async (id) => {
+        await onDelEducation(id);
+
+        await setAllEducations();
+    };
+
+    const onEditEducationBtnClick = async (id) => {
+        await setIsEditable(true);
+
+        await changeValues(educations.find(x => x._id == id));
+    };
+
 
     return (
-        <form onSubmit={onSubmit} method='POST'>
+        <form onSubmit={onSubmitEducation} method='POST'>
             <h1>Education</h1>
             <div className={styles['nestedContainer']}>
                 <div className={styles['inputDiv']}>
@@ -59,7 +99,20 @@ export const Education = () => {
                     <textarea placeholder='e.g. Coursework toward: Degree Title, School Name, ST or online...' value={values.description} onChange={changeHandler} name='description' id='description' />
                 </div>
 
-                <button className={styles['addBtn']}>Add</button>
+                {isEditable ?
+                    <button className={styles['addBtn']} value='Edit' >Edit</button>
+                    : <button className={styles['addBtn']} value='Add' >Add</button>
+                }
+
+                {educations.length > 0 && (
+
+                    educations.map(x => (
+                        <div key={x._id}>
+                            <InfoItem text={x.degree + ': ' + x.fieldOfStudy} id={x._id} onDeleteHandler={onDeleteEducation} onEditHandler={onEditEducationBtnClick} />
+                        </div>
+                    ))
+
+                )}
             </div>
 
         </form>

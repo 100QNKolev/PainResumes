@@ -19,10 +19,15 @@ export const useForm = (initialValues, onSubmitHandler) => {
         setValues(newValues);
     };
 
+    const resetValues = () => {
+        setValues(initialValues);
+    };
+
     return {
         values
         , changeHandler
         , onSubmit
         , changeValues
+        , resetValues
     };
 };

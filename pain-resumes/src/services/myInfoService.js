@@ -25,9 +25,16 @@ export const myInfoServiceFactory = (token, infoType) => {
         return result;
     };
 
+    const deleteInfo = async (infoId) => {
+        const result = await request.del(`${baseUrl}/${infoType}/${infoId}`);
+
+        return result;
+    };
+
     return {
         postInfo
         , getInfo
         , putInfo
+        , deleteInfo
     };
 };

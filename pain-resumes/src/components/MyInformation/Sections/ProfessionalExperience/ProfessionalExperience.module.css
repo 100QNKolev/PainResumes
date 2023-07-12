@@ -4,7 +4,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 1000px;
-    height: 400px;
+    height: auto;
     padding: 20px;
     background: #00000000;
     border-radius: 5px;

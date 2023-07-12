@@ -1,0 +1,20 @@
+.btn {
+    padding-left: 10px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.item {
+    font-size: 15px;
+    width: 200px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    background: #e9dac4;
+    border: 1px solid #ac8e60;
+    border-radius: 5px;
+};
