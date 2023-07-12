@@ -1,22 +1,14 @@
-<<<<<<< Updated upstream
-=======
 import { useEffect } from 'react';
 
 import { useMyInfoContext } from '../../../../contexts/myInfoContext';
->>>>>>> Stashed changes
 import { useForm } from '../../../../hooks/useForm';
 
 import styles from './Education.module.css';
 
-<<<<<<< Updated upstream
-export const Education = ({ onSubmitHandler }) => {
-    const { values, changeHandler, onSubmit } = useForm({
-=======
 export const Education = () => {
     const { onEducationSubmit, onGetEducation } = useMyInfoContext();
 
     const { values, changeHandler, onSubmit, changeValues } = useForm({
->>>>>>> Stashed changes
         schoolName: ''
         , schoolLocation: ''
         , startDate: ''
@@ -24,9 +16,6 @@ export const Education = () => {
         , degree: ''
         , fieldOfStudy: ''
         , description: ''
-<<<<<<< Updated upstream
-    }, onSubmitHandler);
-=======
     }, onEducationSubmit);
 
     useEffect(() => {
@@ -36,7 +25,6 @@ export const Education = () => {
             })
         // eslint-disable-next-line
     }, [onEducationSubmit]);
->>>>>>> Stashed changes
 
     return (
         <form onSubmit={onSubmit} method='POST'>
@@ -70,16 +58,10 @@ export const Education = () => {
                     <h2>Description:</h2>
                     <textarea placeholder='e.g. Coursework toward: Degree Title, School Name, ST or online...' value={values.description} onChange={changeHandler} name='description' id='description' />
                 </div>
-<<<<<<< Updated upstream
-                <button className={styles['saveBtn']}>Save</button>
-                <button className={styles['addBtn']}>Add More Education</button>
-            </div>
-=======
 
                 <button className={styles['addBtn']}>Add</button>
             </div>
 
->>>>>>> Stashed changes
         </form>
     );
 };

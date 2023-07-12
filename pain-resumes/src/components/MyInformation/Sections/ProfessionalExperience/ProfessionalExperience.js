@@ -1,31 +1,19 @@
-<<<<<<< Updated upstream
-=======
 import { useEffect } from 'react';
 
 import { useMyInfoContext } from '../../../../contexts/myInfoContext';
->>>>>>> Stashed changes
 import { useForm } from '../../../../hooks/useForm';
 
 import styles from './ProfessionalExperience.module.css';
 
-<<<<<<< Updated upstream
-export const ProfessionalExperience = ({ onSubmitHandler }) => {
-
-    const { values, changeHandler, onSubmit } = useForm({
-=======
 export const ProfessionalExperience = () => {
     const { onProfessionalExperienceSubmit, onGetProfessionalExperience } = useMyInfoContext();
 
     const { values, changeHandler, onSubmit, changeValues } = useForm({
->>>>>>> Stashed changes
         positionTitle: ''
         , companyName: ''
         , startDate: ''
         , endDate: ''
         , workSummary: ''
-<<<<<<< Updated upstream
-    }, onSubmitHandler);
-=======
     }, onProfessionalExperienceSubmit);
 
     useEffect(() => {
@@ -35,7 +23,6 @@ export const ProfessionalExperience = () => {
             })
         // eslint-disable-next-line
     }, [onProfessionalExperienceSubmit]);
->>>>>>> Stashed changes
 
     return (
         <form onSubmit={onSubmit} method='POST'>
@@ -61,16 +48,10 @@ export const ProfessionalExperience = () => {
                     <h2>Work Summary:</h2>
                     <textarea placeholder='Work Summary' value={values.workSummary} onChange={changeHandler} name='workSummary' id='workSummary' />
                 </div>
-<<<<<<< Updated upstream
-                <button className={styles['saveBtn']}>Save</button>
-                <button className={styles['addBtn']}>Add More Experience</button>
-            </div>
-=======
 
                 <button className={styles['addBtn']}>Add</button>
             </div>
 
->>>>>>> Stashed changes
         </form>
     );
 };
