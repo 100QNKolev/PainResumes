@@ -1,25 +1,20 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 
-//import { useNavigate } from 'react-router-dom';
-
 import { useAuthContext } from './authContext';
-import { myInfoServiceFactory } from '../services/myInfoService';
+
+import { myInfoUtil } from '../providers/myInfoDataProvider';
 
 export const MyInfoContext = createContext();
 
 export const MyInfoProvider = ({ children }) => {
 
     const { userId, token } = useAuthContext();
+    const { onGetInfo, onCreateInfo, onEditInfo, onDeleteInfo } = myInfoUtil(token);
 
     const [personalDetails, setPersonalDetails] = useState({});
     const [professionalExperience, setProfessionalExperience] = useState([]);
     const [education, setEducation] = useState([]);
     const [skills, setSkills] = useState([]);
-
-    const personalDetailsRequester = myInfoServiceFactory(token, 'personalDetails');
-    const professionalExperienceRequester = myInfoServiceFactory(token, 'professionalExperience');
-    const educationRequester = myInfoServiceFactory(token, 'education');
-    const skillsRequester = myInfoServiceFactory(token, 'skills');
 
     useEffect(() => {
         if (userId) {
@@ -44,107 +39,80 @@ export const MyInfoProvider = ({ children }) => {
     };
 
     const onCreatePersonalDetails = async (data) => {
-        const newPersonalDetails = await personalDetailsRequester.postInfo(data);
-
-        await setPersonalDetails(newPersonalDetails);
+        await onCreateInfo(data, 'personalDetails', setPersonalDetails);
     };
 
     const onCreateProfessionalExperience = async (data) => {
-        const newProfessionalExperience = await professionalExperienceRequester.postInfo(data);
-
-        await setProfessionalExperience(newProfessionalExperience);
+        await onCreateInfo(data, 'professionalExperience', setProfessionalExperience);
     };
 
     const onCreateEducation = async (data) => {
-       await educationRequester.postInfo(data);
+        await onCreateInfo(data, 'education', setEducation);
     };
 
     const onCreateSkills = async (data) => {
-        await skillsRequester.postInfo(data);
+        await onCreateInfo(data, 'skills', setSkills);
     };
 
     const onEditPersonalDetails = async (data) => {
-        const infoId = data._id;
-        const newPersonalDetails = await personalDetailsRequester.putInfo(infoId, data);
-
-        await setPersonalDetails(newPersonalDetails);
+        await onEditInfo(data, 'personalDetails', setPersonalDetails);
     };
 
     const onEditProfessionalExperience = async (data) => {
-        const infoId = data._id;
-        await professionalExperienceRequester.putInfo(infoId, data);
-
-        await setProfessionalExperience(onGetProfessionalExperience);
+        await onEditInfo(data, 'professionalExperience', setProfessionalExperience);
     };
 
     const onEditEducation = async (data) => {
-        const infoId = data._id;
-        await educationRequester.putInfo(infoId, data);
-
-        await setEducation(onGetEducation);
+        await onEditInfo(data, 'education', setEducation);
     };
 
     const onEditSkills = async (data) => {
-        const infoId = data._id;
-        await skillsRequester.putInfo(infoId, data);
-
-        await setSkills(onGetSkills);
+        await onEditInfo(data, 'skills', setSkills);
     };
 
     const onGetPersonalDetails = async () => {
-        const result = await personalDetailsRequester.getInfo(userId);
-
-        const details = result[0];
-
-        return details;
+        return await onGetInfo(userId, 'personalDetails');
     };
 
     const onGetProfessionalExperience = async () => {
-        const result = await professionalExperienceRequester.getInfo(userId);
-
-        return result;
+        return await onGetInfo(userId, 'professionalExperience');
     };
 
     const onGetEducation = async () => {
-        const result = await educationRequester.getInfo(userId);
-
-        return result;
+        return await onGetInfo(userId, 'education');
     };
 
     const onGetSkills = async () => {
-        const result = await skillsRequester.getInfo(userId);
-
-        return result;
+        return await onGetInfo(userId, 'skills');
     };
 
     const onDelProfessionalExperience = async (infoId) => {
-        await professionalExperienceRequester.deleteInfo(infoId);
+        await onDeleteInfo(infoId, 'professionalExperience', setProfessionalExperience);
     };
 
     const onDelEducation = async (infoId) => {
-        await educationRequester.deleteInfo(infoId);
+        await onDeleteInfo(infoId, 'education', setEducation);
     };
 
     const onDelSkills = async (infoId) => {
-        await skillsRequester.deleteInfo(infoId);
+        await onDeleteInfo(infoId, 'skills', setSkills);
     };
 
     const context = {
         personalDetails
-        , onGetEducation
-        , onGetPersonalDetails
-        , onGetProfessionalExperience
-        , onGetSkills
+        , professionalExperience
+        , education
+        , skills
         , onPersonalDetailsSubmit
+        , onEditProfessionalExperience
         , onEditEducation
+        , onEditSkills
+        , onCreateProfessionalExperience
         , onCreateEducation
         , onCreateSkills
-        , onEditSkills
-        , onEditProfessionalExperience
-        , onCreateProfessionalExperience
         , onDelProfessionalExperience
-        , onDelSkills
         , onDelEducation
+        , onDelSkills
     };
 
     return (

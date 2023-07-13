@@ -4,16 +4,13 @@ import { PersonalDetails } from './Sections/PersonalDetails/PersonalDetails';
 import { ProfessionalExperience } from './Sections/ProfessionalExperience/ProfessionalExperience';
 import { Education } from './Sections/Education/Education';
 import { Skills } from './Sections/Skills/Skills';
+import { ShowSectionBtn } from './Sections/templates/ShowSectionButton/ShowSectionButton';
 
 import styles from './MyInformation.module.css';
 
 export const MyInformation = () => {
 
-    const [section, setSection] = useState('personalDetails');
-
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-    };
+    const [section, setSection] = useState('none');
 
     const onClickShowSectionBtnHandler = (e) => {
         e.preventDefault();
@@ -41,40 +38,36 @@ export const MyInformation = () => {
             <div className={styles['logo']}></div>
             <div className={styles['container']}>
 
-                <button name='personalDetails' className={styles['showSectionBtn']} onClick={onClickShowSectionBtnHandler}>Personal Details</button>
-                <button name='professionalExperience' className={styles['showSectionBtn']} onClick={onClickShowSectionBtnHandler}>Professional Experience</button>
-                <button name='education' className={styles['showSectionBtn']} onClick={onClickShowSectionBtnHandler}>Education</button>
-                <button name='skills' className={styles['showSectionBtn']} onClick={onClickShowSectionBtnHandler}>Skills</button>
+                <ShowSectionBtn name='personalDetails' onClick={onClickShowSectionBtnHandler} text='Personal Details' />
+                <ShowSectionBtn name='professionalExperience' onClick={onClickShowSectionBtnHandler} text='Professional Experience' />
+                <ShowSectionBtn name='education' onClick={onClickShowSectionBtnHandler} text='Education' />
+                <ShowSectionBtn name='skills' onClick={onClickShowSectionBtnHandler} text='Skills' />
+                <ShowSectionBtn name='none' onClick={onClickShowSectionBtnHandler} text='X' />
 
-                {
-                    section === 'personalDetails' && (
-                        <div>
-                            <PersonalDetails />
-                        </div>
-                    )
-                }
-                {
-                    section === 'professionalExperience' && (
-                        <div>
-                            <ProfessionalExperience onSubmitHandler={onSubmitHandler} />
-                        </div>
-                    )
-                }
-                {
-                    section === 'education' && (
-                        <div>
-                            <Education onSubmitHandler={onSubmitHandler} />
-                        </div>
-                    )
-                }
-                {
-                    section === 'skills' && (
-                        <div>
-                            <Skills onSubmitHandler={onSubmitHandler} />
-                        </div>
-                    )
-                }
+                {section === 'personalDetails' && (
+                    <div>
+                        <PersonalDetails />
+                    </div>
+                )}
 
+                {section === 'professionalExperience' && (
+                    <div>
+                        <ProfessionalExperience />
+                    </div>
+                )}
+
+                {section === 'education' && (
+                    <div>
+                        <Education />
+                    </div>
+                )}
+
+                {section === 'skills' && (
+                    <div>
+                        <Skills />
+                    </div>
+                )}
+                
             </div>
         </>
     );

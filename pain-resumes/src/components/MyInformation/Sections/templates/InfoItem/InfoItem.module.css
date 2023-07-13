@@ -1,5 +1,13 @@
+.label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
+}
+
 .btn {
     padding-left: 10px;
+    width: auto;
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
@@ -17,4 +25,5 @@
     background: #e9dac4;
     border: 1px solid #ac8e60;
     border-radius: 5px;
-};
+    display: inline-flex;
+}

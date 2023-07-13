@@ -1,0 +1,107 @@
+.resume {
+    box-shadow: 0px 0px 30px 0px;
+    margin-top: 20px;
+    margin-left: 30px;
+    background-position: right 35% bottom 45%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    float: left;
+    height: 502px;
+    color: #f1f1f1cb;
+    width: 355px;
+}
+
+.image {
+    width: 355px;
+    height: 502px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.createButton {
+    font-size: 1.4rem;
+    padding-top: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.create-button {
+    font-size: 1.4rem;
+    padding-top: 20px;
+    margin-top: 10px;
+    padding: 0.9em 1.4em;
+    background-color: #5e5151cb;
+    color: #fff;
+    border-radius: 5px #808080;
+    box-sizing: border-box;
+}
+
+.create-button:hover {
+    background-color: #5e5151;
+}
+
+.heading h1 {
+    margin-top: 160px;
+    color: #d80e0eee;
+    font-size: 300%;
+    font-size: 100px;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4.8px rgba(44, 3, 5, 0.562);
+    font-family: "Agency FB";
+    padding: 13px 13px;
+    border-radius: 3px;
+    transition: all .7s ease-in-out;
+}
+
+.button {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    position: fixed;
+    left: 50%;
+    margin-top: -45px;
+    margin-left: -50px;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.active#heart:before,
+.active#heart:after {
+    background: red !important;
+}
+
+#heart {
+    width: 100px;
+    height: 90px;
+    transition: background 0.5s ease;
+}
+
+#heart:before,
+#heart:after {
+    transition: background 0.5s ease;
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: dimgrey;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+#heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}

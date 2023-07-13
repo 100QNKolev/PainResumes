@@ -1,0 +1,23 @@
+.inputDiv {
+    display: table-cell;
+    padding-left: 10px;
+    margin: 3px;
+}
+
+.currentInput {
+    width: 33,3%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 20px;
+    outline: none;
+    margin-top: 5px;
+}
+
+.currentInput:active, .currentInput:focus {
+    border: 1px solid #ff656c;
+}

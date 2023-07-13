@@ -16,7 +16,9 @@ export const InfoItem = ({ text, id, onDeleteHandler, onEditHandler }) => {
 
     return (
         <div className={styles['item']}>
-            <label>{text}</label>
+            <div className={styles['label']}>
+                <label>{text}</label>
+            </div>
             <button className={styles['btn']} onClick={onEdinBtnClick}>✏️</button>
             <button className={styles['btn']} onClick={onDeleteBtnClick}>🗑️</button>
         </div>
