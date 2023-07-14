@@ -7,7 +7,7 @@ import styles from './DownloadButton.module.css';
 
 export const DownloadButton = ({ component, fileName }) => {
   const handleDownload = () => {
-    console.log(component);
+    
     const componentHtml = ReactDOMServer.renderToStaticMarkup(component);
 
     const element = document.createElement('div');

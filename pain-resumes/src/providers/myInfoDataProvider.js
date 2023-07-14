@@ -11,8 +11,8 @@ export const myInfoUtil = (token) => {
             await setter(newInfo);
         }
         else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
-            await setter(x => [...x, newInfo]);
-        }
+            await setter(x => x.length > 0 ? [...x, newInfo] : [newInfo]);
+        };
 
     };
 
@@ -27,7 +27,7 @@ export const myInfoUtil = (token) => {
         }
         else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
             await setter(state => state.map(x => x._id === infoId ? editedInfo : x));
-        }
+        };
     };
 
     const onDeleteInfo = async (infoId, type, setter) => {
@@ -37,7 +37,7 @@ export const myInfoUtil = (token) => {
 
         if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
             await setter(state => state.filter(x => x._id !== infoId));
-        }
+        };
     };
 
     const onGetInfo = async (userId, type) => {
@@ -52,7 +52,7 @@ export const myInfoUtil = (token) => {
         }
         else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
             return result;
-        }
+        };
     };
 
     return {
