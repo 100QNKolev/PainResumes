@@ -1,0 +1,36 @@
+{{#if error}}
+<div>
+    <div class="errorContainer">
+        <p>{{error}}</p>
+    </div>
+</div>
+{{/if}}
+
+<!-- Start Add Photo Section -->
+<div class="createPage">
+    <h2>Add template</h2>
+    <!-- Start Add Photo Form -->
+    <form method="POST">
+        <p>
+            <input type="text" name="name" placeholder="Name">
+        </p>
+
+        <p>
+            <input type="number" name="age" placeholder="Age">
+        </p>
+
+        <p>
+            <textarea type="text" name="description" placeholder="Description"></textarea>
+        </p>
+
+        <p>
+            <input type="text" name="location" placeholder="Location">
+        </p>
+
+        <p>
+            <input type="text" name="image" placeholder="Link to image">
+        </p>
+        <!-- Add Photo Button -->
+        <button class="add-btn" type="submit">Add Template</button>
+    </form>
+</div>

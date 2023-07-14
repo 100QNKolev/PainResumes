@@ -8,7 +8,7 @@ export const Register = () => {
   const { values, changeHandler, onSubmit } = useForm({
     username: ''
     , password: ''
-    , confirmPassword: ''
+    , repeatPassword: ''
     , email: ''
   }, onRegisterSubmit);
 
@@ -20,7 +20,7 @@ export const Register = () => {
         <form onSubmit={onSubmit} method='POST'>
           <input type='text' placeholder='Username' value={values.username} onChange={changeHandler} name='username' id='username' />
           <input type='password' placeholder='Password' value={values.password} onChange={changeHandler} name='password' id='password' />
-          <input type='password' placeholder='Confirm Password' value={values.confirmPassword} onChange={changeHandler} name='confirmPassword' id='confirmPassword' />
+          <input type='password' placeholder='Repeat Password' value={values.repeatPassword} onChange={changeHandler} name='repeatPassword' id='repeatPassword' />
           <input type='text' placeholder='Email' value={values.email} onChange={changeHandler} name='email' id='email' />
           <button>Submit</button>
         </form>
