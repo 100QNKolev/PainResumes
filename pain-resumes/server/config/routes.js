@@ -1,32 +1,33 @@
-const homeController = require('../../src/server/controllers/homeController');
+
 const authController = require('../../src/server/controllers/authController');
-const photoController = require('../controllers/photoController.js');
+const myinfoController = require('../controllers/photoController.js');
 const { isAuth } = require('./middlewares/authMiddleware');
 
 module.exports = (app) => {
-    app.get('/', homeController.getHomePage);
-
-    app.get('/register', authController.getRegisterPage);
     app.post('/register', authController.postRegisterPage);
-
-    app.get('/login', authController.getLoginPage);
+    
     app.post('/login', authController.postLoginPage);
 
     app.get('/logout', authController.getLogout);
 
-    app.get('/404', homeController.get404Page);
+    app.get('/personalDetails', myinfoController.getPersonalDetails);
+    app.post('/personalDetails', myinfoController.postPersonalDetails);
+    app.put('/personalDetails', myinfoController.putPersonalDetails);
+    app.delete('/personalDetails', myinfoController.deletePersonalDetails);
 
-    app.get('/create', isAuth, photoController.getCreatePage);
-    app.post('/create', isAuth, photoController.postCreatePage);
+    app.get('/professionalExperience', myinfoController.getExperience);
+    app.post('/professionalExperience', myinfoController.postExperience);
+    app.put('/professionalExperience', myinfoController.putExperience);
+    app.delete('/professionalExperience', myinfoController.deleteExperience);
 
-    app.get('/catalog', photoController.getCatalogPage);
+    app.get('/education', myinfoController.getEducation);
+    app.post('/education', myinfoController.postEducation);
+    app.put('/education', myinfoController.putEducation);
+    app.delete('/education', myinfoController.deleteEducation);
 
-    app.get('/details/:photoId', photoController.getDetailsPage);
+    app.get('/skills', myinfoController.getSkills);
+    app.post('/skills', myinfoController.postSkills);
+    app.put('/skills', myinfoController.putSkills);
+    app.delete('/skills', myinfoController.deleteSkills);
 
-    app.get('/edit/:photoId', isAuth, photoController.getEditPage);
-    app.post('/edit/:photoId', isAuth, photoController.postEditPage);
-
-    app.get('/delete/:photoId', isAuth, photoController.getDeletePhoto);
-
-    app.post('/comment/create/:userId/:photoId', isAuth, photoController.getComment);
 };

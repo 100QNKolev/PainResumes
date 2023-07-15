@@ -1,4 +1,4 @@
 module.exports = {
-    PORT: 3030,
+    PORT: 3000,
     secret: 'purjenikartofi',
 };

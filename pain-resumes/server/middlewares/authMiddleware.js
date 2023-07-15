@@ -20,11 +20,3 @@ exports.authentication = async (req, res, next) => {
     next();
 };
 
-exports.isAuth = async (req,res,next) => {
-  if(!res.locals.isAuthenticated)
-  {
-    res.redirect('/');
-  }
-
-  next();
-};
