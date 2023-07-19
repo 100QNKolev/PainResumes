@@ -36,6 +36,12 @@ const educationSchema = new mongoose.Schema({
         min: 2,
         max: 50,
     },
+    description: 
+    {
+        type: String,
+        required: true,
+        min: 2,
+    }
 });
 
 const Education = mongoose.model('Education', educationSchema);
