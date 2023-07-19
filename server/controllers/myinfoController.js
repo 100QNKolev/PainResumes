@@ -2,13 +2,7 @@ const myinfoService = require('../services/myinfoService');
 
 
 exports.getPersonalDetails = async (req, res) => {
-  try {
-    const userDetails = await myinfoService.getPersonalDetails();
 
-    res.json(userDetails);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 exports.postPersonalDetails = async (req, res) => {
@@ -19,7 +13,7 @@ exports.postPersonalDetails = async (req, res) => {
 
     res.json(userDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -46,24 +40,18 @@ exports.deletePersonalDetails = async (req, res) => {
 };
 
 exports.getExperience = async (req, res) => {
-  try {
-    const experienceDetails = await myinfoService.getExperience();
 
-    res.json(experienceDetails);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 exports.postExperience = async (req, res) => {
   const { positionTitle, companyName, startDate, endDate, workSummary } = req.body;
-  
+
   try {
     const experienceDetails = await myinfoService.addExperience(positionTitle, companyName, startDate, endDate, workSummary);
 
     res.json(experienceDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -90,13 +78,7 @@ exports.deleteExperience = async (req, res) => {
 };
 
 exports.getEducation = async (req, res) => {
-  try {
-    const educationDetails = await myinfoService.getEducation();
 
-    res.json(educationDetails);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 exports.postEducation = async (req, res) => {
@@ -107,7 +89,7 @@ exports.postEducation = async (req, res) => {
 
     res.json(educationDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -134,13 +116,7 @@ exports.deleteEducation = async (req, res) => {
 };
 
 exports.getSkills = async (req, res) => {
-  try {
-    const skills = await myinfoService.getSkills();
 
-    res.json(skills);
-  } catch (err) {
-    console.log(err);
-  }
 };
 
 exports.postSkills = async (req, res) => {
@@ -151,7 +127,7 @@ exports.postSkills = async (req, res) => {
 
     res.json(newSkill);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 

@@ -11,7 +11,7 @@ exports.postRegisterPage = async (req, res) => {
 
     }
     catch (err) {
-        console.log(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -26,7 +26,7 @@ exports.postLoginPage = async (req, res) => {
 
     }
     catch (err) {
-        console.log(err);
+        res.status(500).json({ error: err.message });
     }
 };
 

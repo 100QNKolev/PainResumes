@@ -15,25 +15,31 @@ export const AuthProvider = ({ children }) => {
     const onLoginSubmit = async (userData) => {
         const result = await authService.Login(userData);
 
-        const user = result[0];
-        const token = result[1];
-        user.accessToken = token;
+        if (result.length > 0) {
 
-        setUser(user);
+            const user = result[0];
+            const token = result[1];
+            user.accessToken = token;
 
-        navigate('/templates');
+            setUser(user);
+
+            navigate('/templates');
+        }
     };
 
     const onRegisterSubmit = async (userData) => {
         const result = await authService.Register(userData);
 
-        const user = result[0];
-        const token = result[1];
-        user.accessToken = token;
+        if (result.length > 0) {
 
-        setUser(user);
+            const user = result[0];
+            const token = result[1];
+            user.accessToken = token;
 
-        navigate('/templates');
+            setUser(user);
+
+            navigate('/templates');
+        }
     };
 
     const onLogoutHandler = async () => {

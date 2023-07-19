@@ -21,12 +21,11 @@ export const PersonalDetails = () => {
     }, onPersonalDetailsSubmit);
  
     useEffect(() => {
-        if(Object.keys(personalDetails) > 0) changeValues(personalDetails)
+
+        if(Object.keys(personalDetails).length > 0) changeValues(personalDetails)
         // eslint-disable-next-line
     }, [onPersonalDetailsSubmit, personalDetails]);
 
-
-    
     return (
         <form onSubmit={onSubmit} method='POST'>
             <h1>Personal Details</h1>

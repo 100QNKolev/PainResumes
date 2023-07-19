@@ -19,7 +19,7 @@ export const requester = async (method, token, url, data) => {
             'X-Authorization': token
         };
     };
-
+  
     const response = await fetch(url, options);
 
     if (response.status === 404 || response.status === 403) {
@@ -28,6 +28,12 @@ export const requester = async (method, token, url, data) => {
 
     try {
         const result = await response.json();
+        
+        if (result.error) {
+            window.alert(result.error);
+            return {};
+        }
+
         return result;
     }
     catch (err) {
