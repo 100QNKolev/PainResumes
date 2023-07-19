@@ -18,10 +18,10 @@ exports.postPersonalDetails = async (req, res) => {
 };
 
 exports.putPersonalDetails = async (req, res) => {
-  const { firstname, lastname, age, phone, email } = req.body;
+  const { firstName, lastName, age, phone, email, profile } = req.body;
 
   try {
-    const userDetails = await myinfoService.updatePersonalDetails(firstname, lastname, age, phone, email);
+    const userDetails = await myinfoService.updatePersonalDetails(firstName, lastName, age, phone, email, profile);
 
     res.json(userDetails);
   } catch (err) {
@@ -56,10 +56,10 @@ exports.postExperience = async (req, res) => {
 };
 
 exports.putExperience = async (req, res) => {
-  const { positiontitle, companyname, startDate, endDate, worksummary } = req.body;
+  const { positionTitle, companyName, startDate, endDate, workSummary } = req.body;
 
   try {
-    const experienceDetails = await myinfoService.updateExperience(positiontitle, companyname, startDate, endDate, worksummary);
+   const experienceDetails = await myinfoService.updateExperience(positionTitle, companyName, startDate, endDate, workSummary);
 
     res.json(experienceDetails);
   } catch (err) {
@@ -94,10 +94,10 @@ exports.postEducation = async (req, res) => {
 };
 
 exports.putEducation = async (req, res) => {
-  const { schoolname, schooladress, startDate, endDate, degree, fieldofstudy } = req.body;
+  const { schoolName, schoolAdress, startDate, endDate, degree, fieldOfStudy, description } = req.body;
 
   try {
-    const educationDetails = await myinfoService.updateEducation(schoolname, schooladress, startDate, endDate, degree, fieldofstudy);
+    const educationDetails = await myinfoService.updateEducation(schoolName, schoolAdress, startDate, endDate, degree, fieldOfStudy, description);
 
     res.json(educationDetails);
   } catch (err) {
@@ -135,7 +135,7 @@ exports.putSkills = async (req, res) => {
   const { skill } = req.body;
 
   try {
-    const updatedSkill = await myinfoService.updateSkill(skill);
+    const updatedSkill = await myinfoService.updateSkills(skill);
 
     res.json(updatedSkill);
   } catch (err) {
@@ -147,7 +147,7 @@ exports.deleteSkills = async (req, res) => {
   const { skill } = req.body;
 
   try {
-    await myinfoService.deleteSkill(skill);
+    await myinfoService.deleteSkills(skill);
 
     res.sendStatus(200);
   } catch (err) {
