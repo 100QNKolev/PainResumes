@@ -18,7 +18,7 @@ exports.postPersonalDetails = async (req, res) => {
 
   try {
     const userDetails = await myinfoService.addPersonalDetails(ownerID, firstName, lastName, age, phone, email, profile);
-    console.log(userDetails);
+
     res.json(userDetails);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -49,9 +49,9 @@ exports.getExperience = async (req, res) => {
 
 exports.postExperience = async (req, res) => {
   const { positionTitle, companyName, startDate, endDate, workSummary } = req.body;
-
+  const ownerID = req.params.ownerID;
   try {
-    const experienceDetails = await myinfoService.addExperience(positionTitle, companyName, startDate, endDate, workSummary);
+    const experienceDetails = await myinfoService.addExperience(ownerID, positionTitle, companyName, startDate, endDate, workSummary);
 
     res.json(experienceDetails);
   } catch (err) {
@@ -93,9 +93,10 @@ exports.getEducation = async (req, res) => {
 
 exports.postEducation = async (req, res) => {
   const { schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description } = req.body;
+  const ownerID = req.params.ownerID;
 
   try {
-    const educationDetails = await myinfoService.addEducation(schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description);
+    const educationDetails = await myinfoService.addEducation(ownerID, schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description);
 
     res.json(educationDetails);
   } catch (err) {
@@ -137,9 +138,10 @@ exports.getSkills = async (req, res) => {
 
 exports.postSkills = async (req, res) => {
   const { skill } = req.body;
+  const ownerID = req.params.ownerID;
 
   try {
-    const newSkill = await myinfoService.addSkills(skill);
+    const newSkill = await myinfoService.addSkills(ownerID, skill);
 
     res.json(newSkill);
   } catch (err) {

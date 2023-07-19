@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const detailsSchema = new mongoose.Schema({
-  
+    ownerID: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' 
+    },
     firstName: {
         type: String,
         required: true,

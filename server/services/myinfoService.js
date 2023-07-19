@@ -6,7 +6,7 @@ const Education = require('../../server/models/education');
 
 
 
-exports.addEducation = async (schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description) => {
+exports.addEducation = async (ownerID, schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description) => {
 
     if (schoolName.length < 2) {
         throw new Error('Schoolname is not long enough');
@@ -24,19 +24,15 @@ exports.addEducation = async (schoolName, schoolLocation, startDate, endDate, de
         throw new Error('Field of study should be from 5 to 50 symbols');
     };
 
-    return await Education.create({ schoolName: schoolName, schoolLocation: schoolLocation, startDate: startDate, endDate: endDate, degree: degree, fieldOfStudy: fieldOfStudy, description: description });
+    return await Education.create({ ownerID: ownerID, schoolName: schoolName, schoolLocation: schoolLocation, startDate: startDate, endDate: endDate, degree: degree, fieldOfStudy: fieldOfStudy, description: description });
 };
 
 exports.getEducation = async (req, res) => {
     try {
 
-        const education = await Education.findById(req.params.ownerID);
+        const education = await Education.find({ ownerID: req.params.ownerID });
 
-        if (!education) {
-            throw new Error('Education not found');
-        }
-
-        res.json({ success: true, data: education });
+        return education;
     } catch (error) {
         console.log(error);
     }
@@ -82,19 +78,14 @@ exports.updateEducation = async (req, res) => {
 
 exports.deleteEducation = async (req, res) => {
     try {
-        const education = await Education.findByIdAndDelete(req.params.infoId);
+        await Education.findByIdAndDelete(req.params.infoId);
 
-        if (!education) {
-            throw new Error('Education not found');
-        }
-
-        res.json({ success: true, message: 'Education deleted' });
     } catch (error) {
         console.log(error);
     }
 };
 
-exports.addExperience = async (positionTitle, companyName, startDate, endDate, workSummary) => {
+exports.addExperience = async (ownerID, positionTitle, companyName, startDate, endDate, workSummary) => {
 
     if (positionTitle.length < 3) {
         throw new Error('Position title is not long enough');
@@ -108,18 +99,18 @@ exports.addExperience = async (positionTitle, companyName, startDate, endDate, w
         throw new Error('Work summary should be from 5 to 50 symbols');
     }
 
-    return await Experience.create({ positionTitle: positionTitle, companyName: companyName, startDate: startDate, endDate: endDate, workSummary: workSummary });
+    return await Experience.create({ ownerID: ownerID, positionTitle: positionTitle, companyName: companyName, startDate: startDate, endDate: endDate, workSummary: workSummary });
 };
 
 exports.getExperience = async (req, res) => {
     try {
-        const experience = await Experience.findById(req.params.ownerID);
+        const experience = await Experience.find({ ownerID: req.params.ownerID });
 
         if (!experience) {
             throw new Error('Experience not found');
         }
 
-        res.json({ success: true, data: experience });
+        return experience;
     } catch (error) {
         console.log(error);
     }
@@ -161,13 +152,7 @@ exports.updateExperience = async (req, res) => {
 
 exports.deleteExperience = async (req, res) => {
     try {
-        const experience = await Experience.findByIdAndDelete(req.params.infoId);
-
-        if (!experience) {
-            throw new Error('Experience not found');
-        }
-
-        res.json({ success: true, message: 'Experience deleted' });
+        await Experience.findByIdAndDelete(req.params.infoId);
     } catch (error) {
         console.log(error);
     }
@@ -195,7 +180,7 @@ exports.addPersonalDetails = async (ownerID, firstName, lastName, age, phone, em
     else if (email.length < 5 || email.length > 50) {
         throw new Error('Email should be from 5 to 50 symbols');
     };
-    
+
     return await PersonalDetails.create({ ownerID: ownerID, firstName: firstName, lastName: lastName, age: age, phone: phone, email: email, profile: profile });
 };
 
@@ -203,12 +188,12 @@ exports.getPersonalDetails = async (req, res) => {
 
     try {
         const personalDetails = await PersonalDetails.find({ ownerID: req.params.ownerID });
-        console.log();
+
         if (!personalDetails) {
             throw new Error('Personal details not found');
         }
 
-        res.json({ success: true, data: personalDetails });
+        return personalDetails;
     } catch (error) {
         console.log(error);
     }
@@ -255,24 +240,20 @@ exports.updatePersonalDetails = async (req, res) => {
 
 
 
-exports.addSkills = async (skill) => {
+exports.addSkills = async (ownerID, skill) => {
 
     if (skill.length < 2) {
         throw new Error('Skill description is not long enough');
     }
 
-    return await Skills.create({ skill });
+    return await Skills.create({ ownerID: ownerID, skill: skill });
 };
 
 exports.getSkills = async (req, res) => {
     try {
-        const skills = await Skills.findById(req.params.ownerID);
+        const skills = await Skills.find({ ownerID: req.params.ownerID });
 
-        if (!skills) {
-            throw new Error('Skills not found');
-        }
-
-        res.json({ success: true, data: skills });
+        return skills;
     } catch (error) {
         console.log(error);
     }
@@ -303,15 +284,9 @@ exports.updateSkills = async (req, res) => {
 };
 
 exports.deleteSkills = async (req, res) => {
-    ;
+
     try {
-        const skills = await Skills.findByIdAndDelete(req.params.infoId);
-
-        if (!skills) {
-            throw new Error('Skills not found');
-        }
-
-        res.json({ success: true, message: 'Skills deleted' });
+        await Skills.findByIdAndDelete(req.params.infoId);
     } catch (error) {
         console.log(error);
     }
