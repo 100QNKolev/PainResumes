@@ -10,7 +10,9 @@ export const authServiceFactory = (token) => {
     };
 
     const Register = async (registerData) => {
-        return await request.post(`${baseUrl}/register`, registerData);
+        const result = await request.post(`${baseUrl}/register`, registerData);
+        console.log(result);
+        console.log("009009132");
     };
 
     const Logout = async () => {

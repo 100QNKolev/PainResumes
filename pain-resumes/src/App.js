@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/authContext';
 import { MyInfoProvider } from './contexts/myInfoContext';
-import { ResumeProvider } from './contexts/resumeContext';
+//import { ResumeProvider } from './contexts/resumeContext';
 
 import { Header } from './components/Header/Header';
 import { Register } from './components/Register/Register';
@@ -16,7 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <MyInfoProvider>
-        <ResumeProvider>
+       
 
           <div className='App'>
             <Header />
@@ -36,7 +36,7 @@ function App() {
 
           </div>
 
-        </ResumeProvider>
+      
       </MyInfoProvider>
     </AuthProvider>
   );

@@ -2,9 +2,20 @@ const authService = require('../services/authService');
 const { getError } = require('../utils/errorUtils');
 
 
-exports.postRegisterPage = async (req, res) => {
-     console.log(req.body)
 
+exports.postRegisterPage = async (req, res) => {
+    const { username, password, email } = req.body;
+
+    try {
+        const {user, token} = await authService.registerUser(username, password, email);
+
+        res.cookie('auth', token);
+        res.json(user);
+        
+    }
+    catch (err) {
+        console.log(err);
+    }
 };
 
 

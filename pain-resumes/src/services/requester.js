@@ -13,6 +13,11 @@ export const requester = async (method, token, url, data) => {
         };
     };
 
+    options.headers = {
+        ...options.headers,
+        'Access-Control-Allow-Origin': ["http://localhost:3030", "http://localhost:3000"] 
+    };
+
     if (token) {
         options.headers = {
             ...options.headers,

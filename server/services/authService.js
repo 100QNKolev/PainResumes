@@ -1,25 +1,23 @@
 const User = require('../../server/models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
+const url = "http://localhost:3030/users";
 const secret = require('../config/config').secret;
 
-const validateRegister = async (username, email, password, repeatPassword) => {
+const validateRegister = async (username, password,  email) => {
 
     if (username.length < 2) {
         throw new Error('Username is not long enough');
     }
 
-    else if (email.length < 10) {
-        throw new Error('Email is not long enough');
-    }
-
     else if (password.length < 4) {
-        throw new Error('Email is not long enough');
+        throw new Error('Password is not long enough');
     }
 
-    else if (password != repeatPassword) {
-        throw new Error('Passwords dont match');
+  
+
+    else if (email.length < 4) {
+        throw new Error('Email is not long enough');
     };
 
     const doUserExist = await User.findOne({
@@ -49,7 +47,8 @@ exports.registerUser = async (username, email, password, repeatPassword) => {
 
     const token = createToken(user._id, user.username);
 
-    return token;
+   
+    return {user, token}
 };
 
 exports.loginUser = async (username, password) => {

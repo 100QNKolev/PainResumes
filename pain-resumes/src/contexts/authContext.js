@@ -22,10 +22,10 @@ export const AuthProvider = ({ children }) => {
 
     const onRegisterSubmit = async (userData) => {
         const result = await authService.Register(userData);
-
         setUser(result);
 
         navigate('/templates');
+
     };
 
     const onLogoutHandler = async () => {
