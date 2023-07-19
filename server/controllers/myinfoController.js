@@ -3,14 +3,22 @@ const myinfoService = require('../services/myinfoService');
 
 exports.getPersonalDetails = async (req, res) => {
 
+  try {
+    const userDetails = await myinfoService.getPersonalDetails(req, res);
+
+    res.json(userDetails);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.postPersonalDetails = async (req, res) => {
   const { firstName, lastName, age, phone, email, profile } = req.body;
+  const ownerID = req.params.ownerID;
 
   try {
-    const userDetails = await myinfoService.addPersonalDetails(firstName, lastName, age, phone, email, profile);
-
+    const userDetails = await myinfoService.addPersonalDetails(ownerID, firstName, lastName, age, phone, email, profile);
+    console.log(userDetails);
     res.json(userDetails);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -29,18 +37,14 @@ exports.putPersonalDetails = async (req, res) => {
   }
 };
 
-exports.deletePersonalDetails = async (req, res) => {
+exports.getExperience = async (req, res) => {
   try {
-    await myinfoService.deletePersonalDetails();
+    const experienceDetails = await myinfoService.getExperience(req, res);
 
-    res.sendStatus(200);
+    res.json(experienceDetails);
   } catch (err) {
     console.log(err);
   }
-};
-
-exports.getExperience = async (req, res) => {
-
 };
 
 exports.postExperience = async (req, res) => {
@@ -59,7 +63,7 @@ exports.putExperience = async (req, res) => {
   const { positionTitle, companyName, startDate, endDate, workSummary } = req.body;
 
   try {
-   const experienceDetails = await myinfoService.updateExperience(positionTitle, companyName, startDate, endDate, workSummary);
+    const experienceDetails = await myinfoService.updateExperience(positionTitle, companyName, startDate, endDate, workSummary);
 
     res.json(experienceDetails);
   } catch (err) {
@@ -69,7 +73,7 @@ exports.putExperience = async (req, res) => {
 
 exports.deleteExperience = async (req, res) => {
   try {
-    await myinfoService.deleteExperience();
+    await myinfoService.deleteExperience(req, res);
 
     res.sendStatus(200);
   } catch (err) {
@@ -78,7 +82,13 @@ exports.deleteExperience = async (req, res) => {
 };
 
 exports.getEducation = async (req, res) => {
+  try {
+    const educationDetails = await myinfoService.getEducation(req, res);
 
+    res.json(educationDetails);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.postEducation = async (req, res) => {
@@ -107,7 +117,7 @@ exports.putEducation = async (req, res) => {
 
 exports.deleteEducation = async (req, res) => {
   try {
-    await myinfoService.deleteEducation();
+    await myinfoService.deleteEducation(req, res);
 
     res.sendStatus(200);
   } catch (err) {
@@ -116,7 +126,13 @@ exports.deleteEducation = async (req, res) => {
 };
 
 exports.getSkills = async (req, res) => {
+  try {
+    const skills = await myinfoService.getSkills(req, res);
 
+    res.json(skills);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.postSkills = async (req, res) => {
@@ -144,12 +160,10 @@ exports.putSkills = async (req, res) => {
 };
 
 exports.deleteSkills = async (req, res) => {
-  const { skill } = req.body;
 
   try {
-    await myinfoService.deleteSkills(skill);
+    await myinfoService.deleteSkills(req, res);
 
-    res.sendStatus(200);
   } catch (err) {
     console.log(err);
   }

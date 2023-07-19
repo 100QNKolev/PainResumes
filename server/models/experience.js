@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const experienceSchema = new mongoose.Schema({
-  
+    ownerID: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' 
+    },
     positionTitle: {
         type: String,
         required: true,

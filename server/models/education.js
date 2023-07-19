@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const educationSchema = new mongoose.Schema({
-
+    ownerID: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' 
+    },
     schoolName: {
         type: String,
         required: true,

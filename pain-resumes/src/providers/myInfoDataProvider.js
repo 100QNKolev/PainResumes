@@ -2,10 +2,10 @@ import { myInfoServiceFactory } from '../services/myInfoService';
 
 export const myInfoUtil = (token) => {
 
-    const onCreateInfo = async (data, type, setter) => {
+    const onCreateInfo = async (data, type, setter, userId) => {
         const requester = myInfoServiceFactory(token, type);
 
-        const newInfo = await requester.postInfo(data);
+        const newInfo = await requester.postInfo(data, userId);
 
         if (Object.keys(newInfo).length > 0) {
 

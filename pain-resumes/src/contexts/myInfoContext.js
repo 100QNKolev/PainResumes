@@ -39,19 +39,19 @@ export const MyInfoProvider = ({ children }) => {
     };
 
     const onCreatePersonalDetails = async (data) => {
-        await onCreateInfo(data, 'personalDetails', setPersonalDetails);
+        await onCreateInfo(data, 'personalDetails', setPersonalDetails, userId);
     };
 
     const onCreateProfessionalExperience = async (data) => {
-        await onCreateInfo(data, 'professionalExperience', setProfessionalExperience);
+        await onCreateInfo(data, 'professionalExperience', setProfessionalExperience, userId);
     };
 
     const onCreateEducation = async (data) => {
-        await onCreateInfo(data, 'education', setEducation);
+        await onCreateInfo(data, 'education', setEducation, userId);
     };
 
     const onCreateSkills = async (data) => {
-        await onCreateInfo(data, 'skills', setSkills);
+        await onCreateInfo(data, 'skills', setSkills, userId);
     };
 
     const onEditPersonalDetails = async (data) => {

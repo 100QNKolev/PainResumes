@@ -7,7 +7,7 @@ const Education = require('../../server/models/education');
 
 
 exports.addEducation = async (schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description) => {
-    
+
     if (schoolName.length < 2) {
         throw new Error('Schoolname is not long enough');
     }
@@ -29,9 +29,9 @@ exports.addEducation = async (schoolName, schoolLocation, startDate, endDate, de
 
 exports.getEducation = async (req, res) => {
     try {
-        
-        const education = await Education.findById(req.params.id);
-        
+
+        const education = await Education.findById(req.params.ownerID);
+
         if (!education) {
             throw new Error('Education not found');
         }
@@ -82,7 +82,7 @@ exports.updateEducation = async (req, res) => {
 
 exports.deleteEducation = async (req, res) => {
     try {
-        const education = await Education.findByIdAndDelete(req.params.id);
+        const education = await Education.findByIdAndDelete(req.params.infoId);
 
         if (!education) {
             throw new Error('Education not found');
@@ -113,7 +113,7 @@ exports.addExperience = async (positionTitle, companyName, startDate, endDate, w
 
 exports.getExperience = async (req, res) => {
     try {
-        const experience = await Experience.findById(req.params.id);
+        const experience = await Experience.findById(req.params.ownerID);
 
         if (!experience) {
             throw new Error('Experience not found');
@@ -161,7 +161,7 @@ exports.updateExperience = async (req, res) => {
 
 exports.deleteExperience = async (req, res) => {
     try {
-        const experience = await Experience.findByIdAndDelete(req.params.id);
+        const experience = await Experience.findByIdAndDelete(req.params.infoId);
 
         if (!experience) {
             throw new Error('Experience not found');
@@ -174,7 +174,7 @@ exports.deleteExperience = async (req, res) => {
 };
 
 
-exports.addPersonalDetails = async (firstName, lastName, age, phone, email, profile) => {
+exports.addPersonalDetails = async (ownerID, firstName, lastName, age, phone, email, profile) => {
 
     if (firstName.length < 2) {
         throw new Error('firstName is not long enough');
@@ -195,15 +195,15 @@ exports.addPersonalDetails = async (firstName, lastName, age, phone, email, prof
     else if (email.length < 5 || email.length > 50) {
         throw new Error('Email should be from 5 to 50 symbols');
     };
-
-    return await PersonalDetails.create({ firstName: firstName, lastName: lastName, age: age, phone: phone, email: email, profile: profile });
+    
+    return await PersonalDetails.create({ ownerID: ownerID, firstName: firstName, lastName: lastName, age: age, phone: phone, email: email, profile: profile });
 };
 
 exports.getPersonalDetails = async (req, res) => {
-   console.log(req.params);
-    try {
-        const personalDetails = await PersonalDetails.findById(req.params.id);
 
+    try {
+        const personalDetails = await PersonalDetails.find({ ownerID: req.params.ownerID });
+        console.log();
         if (!personalDetails) {
             throw new Error('Personal details not found');
         }
@@ -253,19 +253,6 @@ exports.updatePersonalDetails = async (req, res) => {
     }
 };
 
-exports.deletePersonalDetails = async (req, res) => {
-    try {
-        const personalDetails = await PersonalDetails.findByIdAndDelete(req.params.id);
-
-        if (!personalDetails) {
-            throw new Error('Personal details not found');
-        }
-
-        res.json({ success: true, message: 'Personal details deleted' });
-    } catch (error) {
-        console.log(error);
-    }
-};
 
 
 exports.addSkills = async (skill) => {
@@ -279,7 +266,7 @@ exports.addSkills = async (skill) => {
 
 exports.getSkills = async (req, res) => {
     try {
-        const skills = await Skills.findById(req.params.id);
+        const skills = await Skills.findById(req.params.ownerID);
 
         if (!skills) {
             throw new Error('Skills not found');
@@ -311,13 +298,14 @@ exports.updateSkills = async (req, res) => {
 
         res.json({ success: true, data: skills });
     } catch (error) {
-    console.log(error);
+        console.log(error);
     }
 };
 
 exports.deleteSkills = async (req, res) => {
+    ;
     try {
-        const skills = await Skills.findByIdAndDelete(req.params.id);
+        const skills = await Skills.findByIdAndDelete(req.params.infoId);
 
         if (!skills) {
             throw new Error('Skills not found');
