@@ -7,13 +7,15 @@ export const myInfoUtil = (token) => {
 
         const newInfo = await requester.postInfo(data);
 
-        if (type === 'personalDetails') {
-            await setter(newInfo);
-        }
-        else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
-            await setter(x => x.length > 0 ? [...x, newInfo] : [newInfo]);
-        };
+        if (Object.keys(newInfo).length > 0) {
 
+            if (type === 'personalDetails') {
+                await setter(newInfo);
+            }
+            else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
+                await setter(x => x.length > 0 ? [...x, newInfo] : [newInfo]);
+            };
+        }
     };
 
     const onEditInfo = async (data, type, setter) => {

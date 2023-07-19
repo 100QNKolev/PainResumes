@@ -6,12 +6,11 @@ exports.postRegisterPage = async (req, res) => {
     try {
         const { user, token } = await authService.registerUser(username, password, email);
 
-        res.cookie('auth', token);
         res.json([user, token]);
 
     }
     catch (err) {
-        console.log(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
@@ -21,16 +20,15 @@ exports.postLoginPage = async (req, res) => {
     try {
         const { user, token } = await authService.loginUser(email, password);
 
-        res.cookie('auth', token);
         res.json([user, token]);
 
     }
     catch (err) {
-        console.log(err);
+        res.status(500).json({ error: err.message });
     }
 };
 
 exports.getLogout = async (req, res) => {
-    res.clearCookie('auth');
+    res.status(200).json({ user: 'deleted' });
 };
 

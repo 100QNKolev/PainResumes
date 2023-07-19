@@ -64,7 +64,6 @@ exports.loginUser = async (email, password) => {
         throw new Error('Incorrect email or password');
     }
 
-    const token = createToken(user._id, user.email);
-
+    const token = await createToken(user._id, user.email);
     return {user, token}
 };

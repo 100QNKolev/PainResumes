@@ -28,6 +28,12 @@ export const requester = async (method, token, url, data) => {
 
     try {
         const result = await response.json();
+        
+        if (result.error) {
+            window.alert(result.error);
+            return {};
+        }
+
         return result;
     }
     catch (err) {
