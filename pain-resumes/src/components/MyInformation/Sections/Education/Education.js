@@ -57,7 +57,7 @@ export const Education = () => {
 
                 <InputDiv label='School Name:' placeholder='School Name' value={values.schoolName} onChange={changeHandler} name='schoolName' id='schoolName' />
 
-                <InputDiv label='School Adress:' placeholder='Last Name' value={values.schoolLocation} onChange={changeHandler} name='schoolLocation' id='schoolLocation' />
+                <InputDiv label='School Location:' placeholder='School Location' value={values.schoolLocation} onChange={changeHandler} name='schoolLocation' id='schoolLocation' />
 
                 <InputDiv label='Start Date:' placeholder='Start Date' value={values.startDate} onChange={changeHandler} name='startDate' id='startDate' />
 

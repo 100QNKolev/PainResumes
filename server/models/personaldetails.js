@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const detailsSchema = new mongoose.Schema({
   
-    firstname: {
+    firstName: {
         type: String,
         required: true,
         min: 2,
         max: 50,
     },
-    lastname: {
+    lastName: {
         type: String,
         required: true,
         min: 2,
@@ -23,6 +23,12 @@ const detailsSchema = new mongoose.Schema({
         required: true,
     },
     email: {
+        type: String,
+        required: true,
+        min: 2,
+        max: 50,
+    },
+    profile: {
         type: String,
         required: true,
         min: 2,

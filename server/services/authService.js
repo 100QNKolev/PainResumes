@@ -35,7 +35,7 @@ const validateRegister = async (username, password,  email) => {
 const createToken = async (_id, username) => {
     const payload = { _id: _id, username: username };
     const options = { expiresIn: '1d' };
-    const token = jwt.sign(payload, secret, options);
+    const token = await jwt.sign(payload, secret, options);
 
     return token;
 };
@@ -45,26 +45,26 @@ exports.registerUser = async (username, email, password, repeatPassword) => {
 
     const user = await User.create({ username: username, email: email, password: password });
 
-    const token = createToken(user._id, user.username);
+    const token = await createToken(user._id, user.username);
 
    
     return {user, token}
 };
 
-exports.loginUser = async (username, password) => {
-    const user = await User.findOne({ username: username }).exec();
+exports.loginUser = async (email, password) => {
+    const user = await User.findOne({ email: email }).exec();
 
     if (!user) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     }
 
     const isValid = bcrypt.compare(user.password, password);
 
     if (!isValid) {
-        throw new Error('Incorrect username or password');
+        throw new Error('Incorrect email or password');
     }
 
-    const token = createToken(user._id, user.username);
+    const token = createToken(user._id, user.email);
 
-    return token;
+    return {user, token}
 };

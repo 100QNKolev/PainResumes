@@ -2,27 +2,27 @@ const mongoose = require('mongoose');
 
 const experienceSchema = new mongoose.Schema({
   
-    positiontitle: {
+    positionTitle: {
         type: String,
         required: true,
         min: 5,
         max: 50,
     },
-    companyname: {
+    companyName: {
         type: String,
         required: true,
         min: 5,
         max: 50,
     },
-    startdate: {
+    startDate: {
         type: String,
         required: true,
     },
-    enddate: {
+    endDate: {
         type: String,
         required: true,
     },
-    worksummary: {
+    workSummary: {
         type: String,
         required: true,
         min: 5,

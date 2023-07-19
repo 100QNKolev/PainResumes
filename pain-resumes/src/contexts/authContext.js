@@ -7,7 +7,7 @@ import { authServiceFactory } from '../services/authService';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    
+
     const [user, setUser] = useState({});
     const authService = authServiceFactory(user.accessToken);
     const navigate = useNavigate();
@@ -15,17 +15,25 @@ export const AuthProvider = ({ children }) => {
     const onLoginSubmit = async (userData) => {
         const result = await authService.Login(userData);
 
-        setUser(result);
+        const user = result[0];
+        const token = result[1];
+        user.accessToken = token;
+
+        setUser(user);
 
         navigate('/templates');
     };
 
     const onRegisterSubmit = async (userData) => {
         const result = await authService.Register(userData);
-        setUser(result);
+
+        const user = result[0];
+        const token = result[1];
+        user.accessToken = token;
+
+        setUser(user);
 
         navigate('/templates');
-
     };
 
     const onLogoutHandler = async () => {

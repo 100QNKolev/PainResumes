@@ -19,9 +19,9 @@ export const PersonalDetails = () => {
         , email: ''
         , profile: ''
     }, onPersonalDetailsSubmit);
-
+ 
     useEffect(() => {
-        if(personalDetails) changeValues(personalDetails)
+        if(Object.keys(personalDetails) > 0) changeValues(personalDetails)
         // eslint-disable-next-line
     }, [onPersonalDetailsSubmit, personalDetails]);
 

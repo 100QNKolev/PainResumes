@@ -1,7 +1,7 @@
 export const requester = async (method, token, url, data) => {
     const options = {};
 
-    if (options.method !== 'GET') {
+    if (method !== 'GET') {
         options.method = method;
 
         if (data) {
@@ -11,11 +11,6 @@ export const requester = async (method, token, url, data) => {
 
             options.body = JSON.stringify(data);
         };
-    };
-
-    options.headers = {
-        ...options.headers,
-        'Access-Control-Allow-Origin': ["http://localhost:3030", "http://localhost:3000"] 
     };
 
     if (token) {
@@ -38,7 +33,7 @@ export const requester = async (method, token, url, data) => {
     catch (err) {
         return {};
     }
-    
+
 };
 
 export const requestFactory = (token) => {

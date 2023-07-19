@@ -2,23 +2,23 @@ const mongoose = require('mongoose');
 
 const educationSchema = new mongoose.Schema({
 
-    schoolname: {
+    schoolName: {
         type: String,
         required: true,
         min: 5,
         max: 50,
     },
-    schooladress: {
+    schoolLocation: {
         type: String,
         required: true,
         min: 5,
         max: 50,
     },
-    startdate: {
+    startDate: {
         type: String,
         required: true,
     },
-    enddate: {
+    endDate: {
         type: String,
         required: true,
     },
@@ -29,7 +29,7 @@ const educationSchema = new mongoose.Schema({
         min: 2,
         max: 50,
     },
-    fieldofstudy: 
+    fieldOfStudy: 
     {
         type: String,
         required: true,
