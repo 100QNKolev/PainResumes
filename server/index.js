@@ -1,0 +1,10 @@
+const app = require('express')();
+const cookieParser = require('cookie-parser');
+const authMiddleware = require('./middlewares/authMiddleware');
+const cors = require('cors');
+const PORT  = require('./config/config').PORT;
+require('./config/database')();
+app.use(cookieParser());
+require('./config/routes')(app);
+app.use(cors());
+app.listen(PORT, console.log(`Server is listening on port ${PORT}...`));
