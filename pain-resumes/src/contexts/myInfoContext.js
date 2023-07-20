@@ -34,6 +34,13 @@ export const MyInfoProvider = ({ children }) => {
         // eslint-disable-next-line
     }, [userId]);
 
+    const clearValues = async () => {
+        setPersonalDetails({});
+        setProfessionalExperience([]);
+        setEducation([]);
+        setSkills([]);
+    };
+
     const onPersonalDetailsSubmit = async (data) => {
         personalDetails._id ? await onEditPersonalDetails(data) : await onCreatePersonalDetails(data);
     };
@@ -113,6 +120,7 @@ export const MyInfoProvider = ({ children }) => {
         , onDelProfessionalExperience
         , onDelEducation
         , onDelSkills
+        , clearValues
     };
 
     return (

@@ -4,8 +4,6 @@ const PersonalDetails = require('../../server/models/personaldetails');
 const Experience = require('../../server/models/experience');
 const Education = require('../../server/models/education');
 
-
-
 exports.addEducation = async (ownerID, schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description) => {
 
     if (schoolName.length < 2) {

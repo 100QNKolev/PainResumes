@@ -19,9 +19,9 @@ export const PersonalDetails = () => {
         , email: ''
         , profile: ''
     }, onPersonalDetailsSubmit);
- 
+
     const setData = async () => {
-        if(Object.keys(personalDetails).length > 0) changeValues(personalDetails)
+        if (Object.keys(personalDetails).length > 0) changeValues(personalDetails)
     };
 
     useEffect(() => {
@@ -56,6 +56,7 @@ export const PersonalDetails = () => {
                 </div>
 
                 <button className={styles['saveBtn']}>Save</button>
+
             </div>
         </form>
     );

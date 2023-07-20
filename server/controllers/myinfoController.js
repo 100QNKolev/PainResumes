@@ -1,5 +1,6 @@
 const myinfoService = require('../services/myinfoService');
 
+const Template = require('../models/template');
 
 exports.getPersonalDetails = async (req, res) => {
 
@@ -163,5 +164,46 @@ exports.deleteSkills = async (req, res) => {
 
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+
+exports.shareResume = async (req, res) => {
+
+  try {
+    const { template, styles } = req.body;
+
+    const templateWithStyles = `
+      <html>
+        <head>
+          <style>
+            ${styles}
+          </style>
+        </head>
+        <body>
+          ${template}
+        </body>
+      </html>
+    `;
+
+    const savedTemplate = await Template.create({ content: templateWithStyles });
+
+    const shareableURL = `http://localhost:3000/${savedTemplate._id}`;
+
+    res.status(200).json(shareableURL);
+  } catch (err) {
+    res.status(500).json({ error: 'Error sharing template' });
+  }
+
+};
+
+exports.getSharedResume = async (req, res) => {
+  try {
+    const template = await Template.findById(req.params.id);
+    if (!template) {
+      res.status(500).json({ error: 'Template not found' });
+    }
+    res.json(template);
+  } catch (err) {
+    res.status(500).json({ error: 'Error opening shared template' });
   }
 };

@@ -52,9 +52,10 @@ export const Skills = () => {
 
                 <InputDiv label='Skill:' placeholder='Skill' value={values.skill} onChange={changeHandler} name='skill' id='skill' />
 
-                {isEditable ?
-                    <button className={styles['addBtn']} value='Edit' >Edit</button>
-                    : <button className={styles['addBtn']} value='Add' >Add</button>
+                {
+                    isEditable ?
+                        <button className={styles['addBtn']} value='Edit' >Edit</button>
+                        : <button className={styles['addBtn']} value='Add' >Add</button>
                 }
 
                 {skills.length > 0 && (

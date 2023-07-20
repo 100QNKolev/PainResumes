@@ -28,4 +28,7 @@ module.exports = (app) => {
     app.put('/data/skills/:infoId', myinfoController.putSkills);
     app.delete('/data/skills/:infoId', myinfoController.deleteSkills);
 
+    app.post('/share-template', myinfoController.shareResume);
+    
+    app.get('/:id', myinfoController.getSharedResume);
 };

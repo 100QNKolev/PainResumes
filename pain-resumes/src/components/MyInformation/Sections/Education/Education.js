@@ -72,10 +72,12 @@ export const Education = () => {
                     <textarea placeholder='e.g. Coursework toward: Degree Title, School Name, ST or online...' value={values.description} onChange={changeHandler} name='description' id='description' />
                 </div>
 
-                {isEditable ?
-                    <button className={styles['addBtn']} value='Edit' >Edit</button>
-                    : <button className={styles['addBtn']} value='Add' >Add</button>
+                {
+                    isEditable ?
+                        <button className={styles['addBtn']} value='Edit' >Edit</button>
+                        : <button className={styles['addBtn']} value='Add' >Add</button>
                 }
+
 
                 {education.length > 0 && (
                     <div className={styles['items']}> {(
@@ -87,6 +89,6 @@ export const Education = () => {
                     </div>
                 )}
             </div>
-        </form>
+        </form >
     );
 };

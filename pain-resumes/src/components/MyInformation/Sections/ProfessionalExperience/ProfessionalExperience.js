@@ -66,9 +66,10 @@ export const ProfessionalExperience = () => {
                     <textarea placeholder='Work Summary' value={values.workSummary} onChange={changeHandler} name='workSummary' id='workSummary' />
                 </div>
 
-                {isEditable ?
-                    <button className={styles['addBtn']} value='Edit' >Edit</button>
-                    : <button className={styles['addBtn']} value='Add' >Add</button>
+                {
+                    isEditable ?
+                        <button className={styles['addBtn']} value='Edit' >Edit</button>
+                        : <button className={styles['addBtn']} value='Add' >Add</button>
                 }
 
                 {professionalExperience.length > 0 && (
