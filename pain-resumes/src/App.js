@@ -23,6 +23,7 @@ function App() {
           <main>
             <Routes>
 
+              <Route path='/' element={<Catalog />} />
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<Login />} />
               <Route path='/logout' element={<Logout />} />

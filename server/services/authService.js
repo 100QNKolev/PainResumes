@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const secret = require('../config/config').secret;
 
-const validateRegister = async (username, password,  email) => {
+const validateRegister = async (username, password, repeatPassword, email) => {
 
     if (username.length < 2) {
         throw new Error('Username is not long enough');
@@ -11,6 +11,14 @@ const validateRegister = async (username, password,  email) => {
 
     else if (password.length < 4) {
         throw new Error('Password is not long enough');
+    }
+
+    else if (repeatPassword.length < 4) {
+        throw new Error('Repeat password is not long enough and is not the same as the password');
+    }
+
+    else if (repeatPassword != password) {
+        throw new Error('Repeat password must be the same as the password');
     }
 
     else if (email.length < 4) {
