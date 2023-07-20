@@ -24,12 +24,16 @@ export const myInfoUtil = (token) => {
 
         const editedInfo = await requester.putInfo(infoId, data);
 
-        if (type === 'personalDetails') {
-            await setter(editedInfo);
+        if (Object.keys(editedInfo).length > 0) {
+
+            if (type === 'personalDetails') {
+                await setter(editedInfo);
+            }
+            
+            else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
+                await setter(state => state.map(x => x._id === infoId ? editedInfo : x));
+            };
         }
-        else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
-            await setter(state => state.map(x => x._id === infoId ? editedInfo : x));
-        };
     };
 
     const onDeleteInfo = async (infoId, type, setter) => {

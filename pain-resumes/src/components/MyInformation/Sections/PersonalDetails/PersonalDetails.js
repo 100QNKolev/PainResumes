@@ -20,14 +20,23 @@ export const PersonalDetails = () => {
         , profile: ''
     }, onPersonalDetailsSubmit);
  
-    useEffect(() => {
-
+    const setData = async () => {
         if(Object.keys(personalDetails).length > 0) changeValues(personalDetails)
+    };
+
+    useEffect(() => {
+        setData();
         // eslint-disable-next-line
     }, [onPersonalDetailsSubmit, personalDetails]);
 
+    const onSubmitPersonalDetails = async (e) => {
+        await onSubmit(e);
+
+        await setData();
+    };
+
     return (
-        <form onSubmit={onSubmit} method='POST'>
+        <form onSubmit={onSubmitPersonalDetails} method='POST'>
             <h1>Personal Details</h1>
             <div className={styles['nestedContainer']}>
 
