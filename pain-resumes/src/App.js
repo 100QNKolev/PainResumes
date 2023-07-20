@@ -17,7 +17,6 @@ function App() {
     <AuthProvider>
       <MyInfoProvider>
 
-
         <div className='App'>
           <Header />
 
@@ -36,7 +35,6 @@ function App() {
           </main>
 
         </div>
-
 
       </MyInfoProvider>
     </AuthProvider>

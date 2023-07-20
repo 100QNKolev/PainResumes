@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import ReactDOMServer from 'react-dom/server';
-
 import { requestFactory } from '../../services/requester';
 
 export const SharedTemplate = () => {
@@ -20,14 +18,15 @@ export const SharedTemplate = () => {
                     const templateContent = await response.content;
                     setTemplateHtml(templateContent);
                 } else {
-                    console.error('Template not found.');
+                    window.alert('Template not found.');
                 }
             } catch (err) {
-                console.error('Error fetching shared template:', err);
+                window.alert('Error fetching shared template:', err);
             }
         };
 
         fetchSharedTemplate();
+        // eslint-disable-next-line
     }, [id]);
 
     return (
