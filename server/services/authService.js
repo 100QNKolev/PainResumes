@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const secret = require('../config/config').secret;
 
-const validateRegister = async (username, password, repeatPassword, email) => {
+const validateRegister = async (username, email, password, repeatPassword) => {
 
     if (username.length < 2) {
         throw new Error('Username is not long enough');
@@ -46,6 +46,7 @@ const createToken = async (_id, username) => {
 };
 
 exports.registerUser = async (username, email, password, repeatPassword) => {
+    
     await validateRegister(username, email, password, repeatPassword);
 
     const user = await User.create({ username: username, email: email, password: password });
