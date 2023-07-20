@@ -41,7 +41,6 @@ exports.getEducation = async (req, res) => {
 exports.updateEducation = async (req, res) => {
     try {
         const { schoolName, schoolLocation, startDate, endDate, degree, fieldOfStudy, description } = req.body;
-        const infoId = req.params.infoId;
 
         if (schoolName.length < 2) {
             res.status(500).json({ error: 'School name is not long enough'});
@@ -204,7 +203,6 @@ exports.getPersonalDetails = async (req, res) => {
 exports.updatePersonalDetails = async (req, res) => {
     try {
         const { firstName, lastName, age, phone, email, profile } = req.body;
-        const infoId = req.params.infoId;
 
         if (firstName.length < 2) {
             res.status(500).json({ error: 'First name is not long enough'});
