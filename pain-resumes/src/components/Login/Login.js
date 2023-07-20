@@ -4,7 +4,7 @@ import { useAuthContext } from '../../contexts/authContext';
 import styles from './Login.module.css';
 
 export const Login = () => {
-  const { onLoginSubmit } = useAuthContext();
+  const { onLoginSubmit, guestBtnHandler} = useAuthContext();
   const { values, changeHandler, onSubmit } = useForm(
     {
       email: '',
@@ -22,6 +22,7 @@ export const Login = () => {
                     <input type='text' placeholder='Email' value={values.email} onChange={changeHandler} name='email' id='email' />
                     <input type='password' placeholder='Password' value={values.password} onChange={changeHandler} name='password' id='password' />
                     <button>Submit</button>
+                    <button onClick={guestBtnHandler}>Log in as guest</button>
                 </form>
                 
             </div>

@@ -9,15 +9,15 @@ import { DownloadButton } from '../templates/donwloadButton/DownloadButton';
 import { BasicResume } from '../templates/resumes/BasicResume/BasicResume';
 
 export const Resume = () => {
-    const { personalDetails, professionalExperience, education, skills } = useMyInfoContext();
     const { templateId } = useParams();
-    const [resume, setResume] = useState(<> </>);
-
+    const [resume, setResume] = useState();
+    const { personalDetails, professionalExperience, education, skills } = useMyInfoContext();
+    
     const showTemplate = () => {
 
         switch (templateId) {
             case '1':
-                setResume(<BasicResume id={templateId} personalDetails={personalDetails} professionalExperience={professionalExperience} education={education} skills={skills} />);
+                setResume(<BasicResume personalDetails = {personalDetails} professionalExperience = {professionalExperience} education = {education} skills = {skills} />);
                 break;
             default:
                 setResume('');
@@ -37,7 +37,6 @@ export const Resume = () => {
             <DownloadButton component={resume} fileName={'myResume.pdf'} />
 
             {resume}
-
 
         </div>
     );

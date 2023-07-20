@@ -29,7 +29,7 @@ export const myInfoUtil = (token) => {
             if (type === 'personalDetails') {
                 await setter(editedInfo);
             }
-            
+
             else if (type === 'professionalExperience' || type === 'education' || type === 'skills') {
                 await setter(state => state.map(x => x._id === infoId ? editedInfo : x));
             };

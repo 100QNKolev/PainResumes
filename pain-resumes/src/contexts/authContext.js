@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { authServiceFactory } from '../services/authService';
 
+import { userGenerator } from '../util/userGenerator';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -50,10 +52,19 @@ export const AuthProvider = ({ children }) => {
         navigate('/templates');
     };
 
+    const guestBtnHandler = async (e) => {
+        e.preventDefault();
+
+        const userData = await userGenerator();
+
+        await onRegisterSubmit(userData);
+    };
+
     const context = {
         onLoginSubmit
         , onRegisterSubmit
         , onLogoutHandler
+        , guestBtnHandler
         , userId: user._id
         , username: user.username
         , email: user.email

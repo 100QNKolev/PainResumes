@@ -1,6 +1,7 @@
 import styles from './BasicResume.module.css';
 
-export const BasicResume = ({ personalDetails, professionalExperience, education, skills }) => {
+export const BasicResume = ({personalDetails, professionalExperience, education, skills}) => {
+
     return (
         <div className={styles['resume']} >
             <header>

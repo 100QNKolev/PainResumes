@@ -2,7 +2,7 @@ const authService = require('../services/authService');
 
 exports.postRegisterPage = async (req, res) => {
     const { username, password, email } = req.body;
-
+    
     try {
         const { user, token } = await authService.registerUser(username, password, email);
 

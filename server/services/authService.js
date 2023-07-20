@@ -1,7 +1,6 @@
 const User = require('../../server/models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const url = "http://localhost:3030/users";
 const secret = require('../config/config').secret;
 
 const validateRegister = async (username, password,  email) => {
@@ -13,8 +12,6 @@ const validateRegister = async (username, password,  email) => {
     else if (password.length < 4) {
         throw new Error('Password is not long enough');
     }
-
-  
 
     else if (email.length < 4) {
         throw new Error('Email is not long enough');
