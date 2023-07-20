@@ -29,7 +29,7 @@ function App() {
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/account/:userId' element={<MyInformation />} />
                 <Route path='/templates' element={<Catalog />} />
-                <Route path='/templates/1' element={<Resume />} />
+                <Route path='/templates/:templateId' element={<Resume />} />
 
               </Routes>
             </main>
