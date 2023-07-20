@@ -8,7 +8,7 @@ exports.getPersonalDetails = async (req, res) => {
 
     res.json(userDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -26,14 +26,12 @@ exports.postPersonalDetails = async (req, res) => {
 };
 
 exports.putPersonalDetails = async (req, res) => {
-  const { firstName, lastName, age, phone, email, profile } = req.body;
-
   try {
-    const userDetails = await myinfoService.updatePersonalDetails(firstName, lastName, age, phone, email, profile);
+    const userDetails = await myinfoService.updatePersonalDetails(req, res);
 
     res.json(userDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -43,7 +41,7 @@ exports.getExperience = async (req, res) => {
 
     res.json(experienceDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -60,24 +58,22 @@ exports.postExperience = async (req, res) => {
 };
 
 exports.putExperience = async (req, res) => {
-  const { positionTitle, companyName, startDate, endDate, workSummary } = req.body;
 
   try {
-    const experienceDetails = await myinfoService.updateExperience(positionTitle, companyName, startDate, endDate, workSummary);
+    const experienceDetails = await myinfoService.updateExperience(req, res);
 
     res.json(experienceDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
 exports.deleteExperience = async (req, res) => {
   try {
     await myinfoService.deleteExperience(req, res);
-
-    res.sendStatus(200);
+    res.status(200).json({ status: 'deleted' });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -87,7 +83,7 @@ exports.getEducation = async (req, res) => {
 
     res.json(educationDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -105,24 +101,23 @@ exports.postEducation = async (req, res) => {
 };
 
 exports.putEducation = async (req, res) => {
-  const { schoolName, schoolAdress, startDate, endDate, degree, fieldOfStudy, description } = req.body;
 
   try {
-    const educationDetails = await myinfoService.updateEducation(schoolName, schoolAdress, startDate, endDate, degree, fieldOfStudy, description);
+    const educationDetails = await myinfoService.updateEducation(req, res);
 
     res.json(educationDetails);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
 exports.deleteEducation = async (req, res) => {
   try {
     await myinfoService.deleteEducation(req, res);
+    res.status(200).json({ status: 'deleted' });
 
-    res.sendStatus(200);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -132,7 +127,7 @@ exports.getSkills = async (req, res) => {
 
     res.json(skills);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -150,14 +145,13 @@ exports.postSkills = async (req, res) => {
 };
 
 exports.putSkills = async (req, res) => {
-  const { skill } = req.body;
 
   try {
-    const updatedSkill = await myinfoService.updateSkills(skill);
+    const updatedSkill = await myinfoService.updateSkills(req, res);
 
     res.json(updatedSkill);
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
 
@@ -165,8 +159,9 @@ exports.deleteSkills = async (req, res) => {
 
   try {
     await myinfoService.deleteSkills(req, res);
+    res.status(200).json({ status: 'deleted' });
 
   } catch (err) {
-    console.log(err);
+    res.status(500).json({ error: err.message });
   }
 };
