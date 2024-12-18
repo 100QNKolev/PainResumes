@@ -73,13 +73,13 @@ Before setting up the application, ensure the following are installed on your sy
 
    - Start the server:
      ```bash
-     cd server
-     node index.js
+     cd ../server
+     npm start
      ```
 
    - Start the frontend application:
      ```bash
-     cd ../pain-resumes
+     cd pain-resumes
      npm start
      ```
 
