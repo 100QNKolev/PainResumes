@@ -112,40 +112,14 @@ Create your resume effortlessly using dynamic forms:
 ![Personal Details Form](screenshots/personal_details_section.png)
 ![Skills Section Form](screenshots/skills_section.png)
 
-### 2. Template Selection
-Choose from professionally crafted templates that cater to different industries and styles.
-
-![Template Selection](screenshots/template-selection.png)
-
-### 3. Real-time Preview
+### 2. Real-time Preview
 Preview your resume as you build it to ensure it meets your expectations.
 
 ![Real-time Resume Preview](screenshots/resume_template.png)
 
-### 4. Export and Share
+### 3. Export and Share
 - **Share:** Generate a unique link to share your resume with potential employers.
 - **Download:** Export your resume as a high-quality PDF file.
 
 ![Shared Resume](screenshots/shared_resume.png)
 ![Downloaded Resume](screenshots/downloaded_resume.png)
-
----
-
-## Screenshots
-
-Below are some screenshots demonstrating key features:
-
-1. **Interactive Forms**
-   ![Personal Details Form](screenshots/personal_details_section.png)
-   ![Skills Section Form](screenshots/skills_section.png)
-
-2. **Template Selection**
-   ![Template Selection](screenshots/template-selection.png)
-
-3. **Real-time Preview**
-   ![Real-time Resume Preview](screenshots/resume_template.png)
-
-4. **Export and Share**
-   ![Shared Resume](screenshots/shared_resume.png)
-   ![Downloaded Resume](screenshots/downloaded_resume.png)
-
